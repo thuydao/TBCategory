@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
-
 @interface UIView (TBCore)
+
+- (void)borderWithBorderWidth:(CGFloat )borderWidth withBoderColor:(UIColor *)color withCornerRadius:(CGFloat )cornerRadius andWithMasksToBounds:(BOOL )isMasksToBounds;
 
 @end
 

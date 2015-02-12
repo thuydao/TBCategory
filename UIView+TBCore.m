@@ -7,8 +7,19 @@
 //
 
 #import "UIView+TBCore.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UIView (TBCore)
+
+- (void)borderWithBorderWidth:(CGFloat )borderWidth withBoderColor:(UIColor *)color withCornerRadius:(CGFloat )cornerRadius andWithMasksToBounds:(BOOL )isMasksToBounds
+{
+    self.layer.borderColor = [color CGColor];
+    self.layer.borderWidth = borderWidth;
+    
+    self.layer.cornerRadius = cornerRadius;
+    
+    self.layer.masksToBounds = isMasksToBounds;
+}
 
 @end
 
