@@ -182,3 +182,47 @@
 - (BOOL)tb_isEqualToStringInsensitive:(NSString *)strNeedEqual;
 
 @end
+
+
+
+//================================================================================================
+
+#pragma mark - calculate
+@interface NSString (calculate)
+
+/**
+ *  sha1
+ *
+ *
+ *  @return NSString
+ */
+- (NSString*)sha1;
+
+/**
+ *  md5
+ *
+ *
+ *  @return NSString
+ */
+- (NSString *)md5;
+
+
+
+@end
+
+
+//================================================================================================
+
+#pragma mark - Device
+@interface NSString (Device)
+
+/**
+ *  tb_getUDID
+ *
+ *  @return NSString
+ */
++ (NSString *)tb_getUDID;
+
+@end
+
+
