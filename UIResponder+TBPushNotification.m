@@ -44,12 +44,40 @@
  */
 + (NSString *)tb_getDeviceToken
 {
-    NSString *tb_TokenDevice = [[NSUserDefaults standardUserDefaults] objectForKey:@"token_Device"];
-    if (!tb_TokenDevice) {
+//    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *devToken = [UIResponder getFromUserDefaultWithKey:@"DEVICE_TOKEN"];
+    if (!devToken) {
         return @"";
     }
-    else return tb_TokenDevice;
+    else return devToken;
 }
+
+#pragma mark - Origin
+- (void)saveToUserDefaultWithData:(id )data withKey:(NSString *)key
+{
+    // P D
+    NSData *dtSave = [NSKeyedArchiver archivedDataWithRootObject:data];
+    
+    // Save
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:dtSave forKey:key];
+    [userDefault synchronize];
+}
+
++ (id)getFromUserDefaultWithKey:(NSString *)key
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    
+    if ( [[userDefault dictionaryRepresentation].allKeys containsObject:key] )
+    {
+        NSData *dtGet = [NSKeyedUnarchiver unarchiveObjectWithData:[userDefault objectForKey:key]];
+        
+        return dtGet;
+    }
+    
+    return nil;
+}
+
 
 
 #pragma mark - overwrite
@@ -68,7 +96,11 @@
                           stringByReplacingOccurrencesOfString: @" " withString: @""];
     
     TDLOG(@"device token - %@",devToken);
-    [[NSUserDefaults standardUserDefaults] setValue:deviceToken forKey:@"token_Device"];
+//    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//    [ud setObject:deviceToken forKey:@"DEVICE_TOKEN"];
+//    [ud synchronize];
+    
+    [self saveToUserDefaultWithData:devToken withKey:@"DEVICE_TOKEN"];
 }
 
 /**
